@@ -8,4 +8,6 @@ class Reply(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE)
     comment = models.ForeignKey(Comment, on_delete=CASCADE)
     text = models.CharField(max_length=255)
-# Create your models here.
+
+    class Meta:
+        astract = True
