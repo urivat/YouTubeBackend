@@ -1,11 +1,9 @@
-from xml.etree.ElementTree import Comment
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
 from .models import Comment
 from .serializer import Comment, CommentSerializer
-from backend.drf_jwt_backend.comment import serializer
 from django.http import Http404
 from django.shortcuts import get_list_or_404, get_object_or_404
 # Create your views here.

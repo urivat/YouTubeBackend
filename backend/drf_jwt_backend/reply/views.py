@@ -1,12 +1,10 @@
-from django.shortcuts import render
-from xml.etree.ElementTree import reply
+
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
-from backend.drf_jwt_backend.reply import serializer
-from .models import reply
+from .models import Reply
 from .serializer import ReplySerializer
 from comment.models import Comment
 from django.contrib.auth.models import User
