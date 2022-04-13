@@ -6,6 +6,8 @@ from rest_framework.decorators import api_view, permission_classes
 from .models import Comment
 from .serializer import Comment, CommentSerializer
 from backend.drf_jwt_backend.comment import serializer
+from django.http import Http404
+from django.shortcuts import get_list_or_404, get_object_or_404
 # Create your views here.
 
 @api_view(['GET'])
@@ -30,6 +32,21 @@ def user_comments(request):
         comments = Comment.objects.filter(user_id=request.user.id)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
+@api_view(['GET', 'PUT'])
+@permission_classes([IsAuthenticated])
+def get_comment_details(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.method == 'PUT':
+        serializer= CommentSerializer(comment, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    elif request.method == 'GET':
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
         
+
+
+
 
 
