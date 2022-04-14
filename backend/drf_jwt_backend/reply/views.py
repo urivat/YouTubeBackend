@@ -1,4 +1,3 @@
-
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -13,7 +12,7 @@ from django.contrib.auth.models import User
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_relpies(request):
-    reply = reply.objects.filter()
+    reply = Reply.objects.all()
     serializer = ReplySerializer(reply, many=True)
     return Response(serializer.data)
 
@@ -22,15 +21,15 @@ def get_all_relpies(request):
 @permission_classes([IsAuthenticated])
 def user_reply(request):
     print(
-        'User ', f"{request.user.id} {request.user.email} {request.user.username}")
+        'User ', f"{request.user.id} {request.user.email} {request.comment.username}")
     if request.method == 'POST':
         serializer = ReplySerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(user=request.user)
+            serializer.save(user= request.user , comment_id=request.comment.id)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'GET':
-        reply = Reply.objects.filter(user_id=request.user.id)
+        reply = Reply.objects.filter(user= request.user , comment_id=request.comment.id)
         serializer = ReplySerializer(reply, many=True)
         return Response(serializer.data)
 
