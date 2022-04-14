@@ -11,15 +11,15 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_comments(request):
-    get_comment = Comment.objects.all()
-    serializer = CommentSerializer(get_comment, many = True)
-    return (serializer.data)
+        get_comment = Comment.objects.all()
+        serializer = CommentSerializer(get_comment, many=True)
+        return Response(serializer.data)
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def user_comments(request):
     print(
-        'User', f'{request.id} {request.user.email} {request.user.username} ')
+        'User', f'{request.user.id} {request.user.email} {request.user.username} ')
     if request.method == 'POST':
         serializer= CommentSerializer(data=request.data)
         if serializer.is_valid():
@@ -42,7 +42,12 @@ def get_comment_details(request, pk):
     elif request.method == 'GET':
         serializer = CommentSerializer(comment)
         return Response(serializer.data)
-        
+    # elif request.method == 'POST':
+    #     serializer = CommentSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response (serializer.data, status=status.HTTP_201_CREATED)
+
 
 
 

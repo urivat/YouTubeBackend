@@ -3,5 +3,5 @@ from reply import views
 
 urlpatterns= [
     path('all', views.get_all_relpies),
-    path('', views.add_reply),
+    path('', views.user_reply),
 ]
