@@ -5,7 +5,6 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
 from .models import Reply
 from .serializer import ReplySerializer
-from comment.models import Comment
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -19,13 +18,13 @@ def get_all_relpies(request):
 
 @api_view(['GET','POST'])
 @permission_classes([IsAuthenticated])
-def user_reply(request):
+def user_reply(request, comment_id):
     print(
         'User ', f"{request.user.id} {request.user.email} {request.user.username}")
     if request.method == 'POST':
         serializer = ReplySerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(user=request.user,comment=request.comment)
+            serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'GET':

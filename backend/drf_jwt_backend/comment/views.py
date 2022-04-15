@@ -11,13 +11,14 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_comments(request, video_id):
+        
         get_comment = Comment.objects.all()
         serializer = CommentSerializer(get_comment, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
-def user_comments(request):
+def user_comments(request ):
     print(
         'User', f'{request.user.id} {request.user.email} {request.user.username} ')
     if request.method == 'POST':
