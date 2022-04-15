@@ -10,7 +10,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def get_all_comments(request):
+def get_all_comments(request, video_id):
         get_comment = Comment.objects.all()
         serializer = CommentSerializer(get_comment, many=True)
         return Response(serializer.data)

@@ -21,15 +21,15 @@ def get_all_relpies(request):
 @permission_classes([IsAuthenticated])
 def user_reply(request):
     print(
-        'User ', f"{request.user.id} {request.user.email} {request.comment.username}")
+        'User ', f"{request.user.id} {request.user.email} {request.user.username}")
     if request.method == 'POST':
         serializer = ReplySerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(user= request.user , comment_id=request.comment.id)
+            serializer.save(user=request.user,comment=request.comment)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'GET':
-        reply = Reply.objects.filter(user= request.user , comment_id=request.comment.id)
+        reply = Reply.objects.filter(user= request.user.id)
         serializer = ReplySerializer(reply, many=True)
         return Response(serializer.data)
 
