@@ -3,21 +3,24 @@ import {  useState  }  from 'react';
 
 
 
-const SearchBar = () => {
-    const [searchTerm, setSearchTerm] = useState('')
+const SearchBar = (props) => {
+    const [searchTerm, setSearchTerm] = useState('');
 
-    handleChange = (e) => {
-        setSearchTerm(e.target.value)
+
+    function handleSubmit(e)  {
+        e.preventDefault();
+        let video = {searchTerm: searchTerm};
+        console.log(video);
+        props.searchTermProperties(video)
     }
 
-    handleSubmit = () => {
-        const {searchTerm} = 
-    }
 
-
-
-
-    return ( <div></div> );
+    return ( 
+    <form className='searchBar' onSubmit={handleSubmit} >
+        <input type='text' value= {searchTerm} onChange = {(e) => setSearchTerm(e.target.value)}/>
+        <button className= 'button'  type='submit'></button> 
+    </form> );
 }
  
 export default SearchBar;
+
