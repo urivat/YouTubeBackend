@@ -15,12 +15,16 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
-import SearchPage from "./pages/SearchPage/SearchPage";
+import SearchBar from "./components/SearchBar/SearchBar";
+
 
 function App() {
   return (
     <div>
       <Navbar />
+      <div>
+        <SearchBar/>
+      </div>
       <Routes>
         <Route
           path="/"
