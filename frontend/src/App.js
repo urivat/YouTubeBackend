@@ -1,6 +1,9 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import React, { useState }from "react";
+//import useAuth from "../../hooks/useAuth";
+
 
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
@@ -13,18 +16,35 @@ import VideoPage from "./pages/VideoPage/VideoPage";
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 
+
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 import SearchBar from "./components/SearchBar/SearchBar";
 
 
 function App() {
-  return (
+  const [searchTerm , setSearchTerm] = useState("");
+  const [video, setVideo] = useState([]);
+  // const [user, token] = useAuth();
+  // const [comment, setComment] = useState([]);
+ 
+
+
+
+
+function newSearch(search){
+    let queryItem = searchTerm;
+    debugger;
+    setSearchTerm(queryItem);
+   
+
+}
+
+return (
     <div>
-      <Navbar />
-      <div>
-        <SearchBar/>
-      </div>
+      <Navbar /> 
+      <SearchBar newSearchTerm = {newSearch}/>
+      
       <Routes>
         <Route
           path="/"

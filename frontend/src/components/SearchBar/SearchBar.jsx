@@ -3,23 +3,22 @@ import {  useState  }  from 'react';
 
 
 
-const SearchBar = (props) => {
-    const [searchTerm, setSearchTerm] = useState('');
+const SearchBar = ({search}) => {
+    const [searchTerm, setSearchTerm] = useState('')                        //I am taking the search term from here and giving it to searchpage as
 
-
-    function handleSubmit(e)  {
-        e.preventDefault();
-        let video = {searchTerm: searchTerm};
-        console.log(video);
-        props.searchTermProperties(video)
-    }
-
+function handleSubmit(e){
+    e.preventDefault();
+    let searches = {searchTerm:searchTerm};
+    
+    console.log(handleSubmit)
+    search.newSearchterm(searches);
+}  
 
     return ( 
-    <form className='searchBar' onSubmit={handleSubmit} >
-        <input type='text' value= {searchTerm} onChange = {(e) => setSearchTerm(e.target.value)}/>
-        <button className= 'button'  type='submit'></button> 
-    </form> );
+    <div className='searchBar'>
+        <input type='search' placeholder='Search' value = {searchTerm} onChange={(event)=> setSearchTerm(event.target.value)} />
+        <button className= 'button' onSubmit={handleSubmit} type='submit'>Search</button> 
+    </div> );
 }
  
 export default SearchBar;

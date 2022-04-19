@@ -2,7 +2,6 @@ import React from "react";
 import { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
-import SearchBar from "../SearchBar/SearchBar";
 import "./NavBar.css";
 
 const Navbar = () => {
@@ -15,9 +14,6 @@ const Navbar = () => {
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <b>YoutubeClone</b>
           </Link>
-        </li>
-        <Link to= "/search"><SearchBar/></Link>
-        <li>
           {user ? (
             <button onClick={logoutUser}>Logout</button>
           ) : (
