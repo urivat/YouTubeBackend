@@ -1,20 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import VideoPlayer from '../../components/VideoPlayer/VideoPlayer'
 
 import useAuth from "../../hooks/useAuth"
 import useCustomForm from "../../hooks/useCustomForm"
 
-/*let intialValues = {
-        "video_id": "",
-        "text": "",
-        "like": "",
-        "dislike": "",
-    
-}*/
-const VideoPage = (Props) => {
+
+const VideoPage = (props) => {
+        console.log(props)
+        const [videosId, setVideosId] = useState('4ORZ1GmjaMc')
+
+
+
         return ( 
-            <h1>This page will diplay main video and comments and replies below</h1>
+            <div>
+                <VideoPlayer id = {videosId}/>
+            </div>   //This page will diplay main video and comments and replies below
+ 
             //components needed will be searchbar, comment form , replyform related videos
  );
 

@@ -32,19 +32,12 @@ function App() {
 
 
 
-function newSearch(search){
-    let queryItem = searchTerm;
-    debugger;
-    setSearchTerm(queryItem);
-   
-
-}
 
 return (
     <div>
       <Navbar /> 
-      <SearchBar newSearchTerm = {newSearch}/>
-      
+        <SearchPage />
+        {/* <VideoPage /> */}
       <Routes>
         <Route
           path="/"
