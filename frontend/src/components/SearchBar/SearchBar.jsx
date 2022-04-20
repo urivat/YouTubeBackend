@@ -7,11 +7,10 @@ const SearchBar = (props) => {
     
     const [searchTerm, setSearchTerm] = useState('')       
                      //I am taking the search term from here and giving it to searchpage as
-console.log(props)
+
 function handleSubmit(e){
     e.preventDefault();
-    let search = searchTerm
-    props.searchTermProps(search)
+    props.searchVideo(searchTerm)
 
 
 
