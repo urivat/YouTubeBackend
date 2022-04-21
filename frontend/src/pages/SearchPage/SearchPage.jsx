@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import VideoPage from "../VideoPage/VideoPage";
+import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 
 const SearchPage = (props) => {
   const [videos, setVideos] = useState([]);
-  const APIKEY = "AIzaSyAIVYtQXy7BbFBUU6pinHhLlHndNNoeL58";
+  const APIKEY = "AIzaSyBxEKJ7lee1-KViuzNyjtOH1dIQ8nLcuOI";
   
 
 //   function newSearch(term) {
@@ -16,14 +17,13 @@ const SearchPage = (props) => {
 
   useEffect(() => {
     searchVideo();
-  }, [videos]);
+  }, []);
 
   async function searchVideo(searchTerm) {
     try {
       let response = await axios.get(
         `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${APIKEY}&part=snippet&maxResult=2`
       );
-      console.log(response.data);
       setVideos(response.data);
     } catch (error) {
       console.log(error.message);
@@ -34,7 +34,7 @@ const SearchPage = (props) => {
   return (
     <div>
       <SearchBar searchVideo={searchVideo} />
-      <VideoPage  videos = {videos}/>
+      <VideoPlayer  videos = {videos}/>
       {/* <SearchBar updateSearchTerm={newSearch} /> */}
 
       <div>

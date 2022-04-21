@@ -37,7 +37,7 @@ return (
     <div>
       <Navbar /> 
         <SearchPage />
-        {/* <VideoPage /> */}
+        <VideoPage />
       <Routes>
         <Route
           path="/"

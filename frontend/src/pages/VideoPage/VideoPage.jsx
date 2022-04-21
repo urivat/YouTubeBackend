@@ -9,7 +9,6 @@ import useCustomForm from "../../hooks/useCustomForm"
 
 
 const VideoPage = ({videos}) => {
-       debugger;
         const [videosId, setVideosId] = useState('4ORZ1GmjaMc')
         
         function searchedVideos() {
@@ -19,7 +18,7 @@ const VideoPage = ({videos}) => {
 
         return ( 
             <div>
-                <VideoPlayer id = {videos.id}/>
+                <VideoPlayer />
             </div>   //This page will diplay main video and comments and replies below
  
             //components needed will be searchbar, comment form , replyform related videos
